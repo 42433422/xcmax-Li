@@ -1,4 +1,4 @@
-# 凭据、密钥和真实运行记录不得进入本仓（公开或私有 Git 均不允许）。
+# 挡住日后误提交。已获批并 force-add 的冻结副本不会被这条规则撤销。
 # 忽略规则不能清除已跟踪文件，也不能阻止 git add -f。
 
 *.pem
@@ -18,6 +18,6 @@ id_ecdsa
 *credential*
 *credentials*
 
-# A03 运行记录
+# 未获批的新运行记录。本批两份冻结 jsonl 已 force-add，保持已跟踪。
 **/runtime_sync/**
 **/self_maintenance_*.jsonl

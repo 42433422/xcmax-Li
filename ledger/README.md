@@ -28,7 +28,7 @@ CSV 为 UTF-8 BOM。用 Excel 打开时，把 `asset_id`、`freeze_sha`、`git_b
 - `classified`：已决定迁入私有 Git，字节尚未写入本仓。
 - `copied`：字节已写入工作区且与源 SHA-256 一致，尚未从本仓 HEAD 读回。
 - `verified`：从本仓 HEAD 读回的字节与 `src_sha256`、`dst_sha256` 一致。
-- `vault_or_store_required`：必须进受限存储，禁止把正文提交进 Git。受限存储尚未由 Eden 指定。
+- `vault_or_store_required`：曾表示正文不能进 Git。Eden 已把本批 A02 与 A03 改存到本私有仓，那些行现在是 `migrate_private_git`。真正的密钥文件（`.pem`、`.env`、未获批的新运行记录）仍然用这个状态，并且不提交。
 - `pending` / `pending_classify`：未批准复制，也未批准从公开仓删除。
 - `retained_public`：继续留在公开仓。本批不删除、不复制。
 
@@ -36,4 +36,4 @@ CSV 为 UTF-8 BOM。用 Excel 打开时，把 `asset_id`、`freeze_sha`、`git_b
 
 ## 受众和权属
 
-当前受众：Eden（`42433422`）本人。负责人：Eden。更宽的协作者、保留期和受限存储位置都还没有指定；未指定前，不扩大访问，也不把受限正文放进 Git。
+当前受众：Eden（`42433422`）本人。负责人：Eden。更宽的协作者和保留期还没有指定。Eden 已指定本私有仓作为 A02 与 A03 这一批的存储，见 `RESTRICTED_STORE.md`。
