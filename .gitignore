@@ -1,0 +1,23 @@
+# 凭据、密钥和真实运行记录不得进入本仓（公开或私有 Git 均不允许）。
+# 忽略规则不能清除已跟踪文件，也不能阻止 git add -f。
+
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+id_ecdsa
+
+.env
+.env.*
+
+*secret*
+*Secret*
+*SECRET*
+*credential*
+*credentials*
+
+# A03 运行记录
+**/runtime_sync/**
+**/self_maintenance_*.jsonl
