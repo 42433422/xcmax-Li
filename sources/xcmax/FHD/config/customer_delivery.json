@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "description": "客户交付清单 SSOT：客户品牌 / 双轨节点 / 合同种子；不进 industry_baseline 通用配置",
+  "delivery_model": {
+    "tracks": {
+      "modules": {
+        "id": "modules",
+        "label": "业务模块",
+        "legacy_track_id": "business",
+        "summary": "侧栏入口、工作台、页面、表单与业务流程；轨道上每个模块是独立节点，各自有制作进度"
+      },
+      "employees": {
+        "id": "employees",
+        "label": "AI 员工",
+        "summary": "角色、提示词、工具与上岗验证；轨道上每个员工是独立节点，各自有制作进度"
+      }
+    },
+    "rules": [
+      "生产员工「私有交付」只暴露当前登录账号会话 entitled_mod_ids ∩ legacy_mod_id，不含 industry_mod_id（通用行业包）",
+      "禁止把 customer_delivery.json 里其它客户的定制包写进本账号交付线（即使平台壳为 generic SKU、企业 Mod 过滤关闭）",
+      "企业端写进度必须落 market:{sessions.market_user_id}；禁止静默写入 local:*（管理端按市场用户 id 只读对齐）",
+      "模块轨与员工轨必须分开展示，禁止混在同一列表",
+      "轨道上的交付物以节点为单位展示进度；整轨状态由节点进度汇总",
+      "每个节点的阶段是流程，不是自由枚举：只能按 stage_flow.transitions 推进或转入返工，禁止跨阶段跳跃",
+      "转返工必须填写问题说明，并开现有客服变更工单（user_cs_change_request · bug_fix · source=private_mod_rework），禁止另建工单系统",
+      "太阳鸟使用 main 标准宿主；人员、部门与记录属于当前账号共享考勤工作区；考勤表转换及模板规则由账号授权的独立私有 Mod 提供",
+      "delivery_mode=private_mod 的 runtime_mod_id 是独立签名交付包；legacy_mod_id 保留历史权益与进度身份，禁止把客户功能预装进通用宿主",
+      "delivery_mode=unified_industry 的客户安装 industry_mod_id 对应行业包，并按 runtime_mod_id 使用归并后的通用业务模块；legacy_mod_id 只保留历史进度兼容，不得作为运行包或安装门槛",
+      "客户交付走通用 Enterprise 安装包 + 生产员工私有交付进度（制作/测试/返工/验收）；太阳鸟定制安装包（太阳鸟-Setup / sunbird-custom-installer）已退役，禁止再作为正式交付面"
+    ],
+    "stages": [
+      "production",
+      "testing",
+      "rework",
+      "acceptance",
+      "delivered"
+    ],
+    "happy_path": [
+      "production",
+      "testing",
+      "acceptance",
+      "delivered"
+    ],
+    "stage_flow": {
+      "production": {
+        "label": "制作中",
+        "goal": "完成开发与自测，进入可测状态",
+        "next": [
+          "testing"
+        ]
+      },
+      "testing": {
+        "label": "测试中",
+        "goal": "用例通过；不通过则返工",
+        "next": [
+          "acceptance",
+          "rework"
+        ]
+      },
+      "rework": {
+        "label": "返工中",
+        "goal": "修复问题后重回测试",
+        "next": [
+          "testing"
+        ]
+      },
+      "acceptance": {
+        "label": "验收中",
+        "goal": "生产/客户验收通过后交付",
+        "next": [
+          "delivered",
+          "rework"
+        ]
+      },
+      "delivered": {
+        "label": "已交付",
+        "goal": "节点交付完成，流程结束",
+        "next": [
+          "rework"
+        ]
+      }
+    }
+  },
+  "deliveries": [
+    {
+      "delivery_id": "customer-taiyangniao",
+      "industry_id": "饰品包装",
+      "industry_mod_id": "accessories-packaging-industry",
+      "legacy_mod_id": "taiyangniao-pro",
+      "runtime_mod_id": "sunbird-attendance-custom",
+      "delivery_mode": "private_mod",
+      "custom_features": [
+        "attendance-convert"
+      ],
+      "customer_account": "SUNBIRD",
+      "market_user_id": 29,
+      "customer_brand": "太阳鸟 PRO",
+      "customer_name": "太阳鸟",
+      "tracks": {
+        "modules": [
+          {
+            "id": "attendance-convert",
+            "label": "考勤表转化",
+            "summary": "钉钉考勤表上传转换、模板映射与人员花名册对齐"
+          },
+          {
+            "id": "personnel",
+            "label": "人员管理",
+            "summary": "共享考勤工作区人员主数据接入与交付验收"
+          },
+          {
+            "id": "department",
+            "label": "部门管理",
+            "summary": "共享考勤工作区部门主数据接入与交付验收"
+          }
+        ],
+        "employees": [
+          {
+            "id": "attendance_ai",
+            "label": "考勤ai助手",
+            "summary": "协助处理出勤记录、异常说明与排班相关问答"
+          }
+        ]
+      },
+      "delivery_seed_package": {
+        "pkg_id": "sunbird-delivery-seed",
+        "version": "1.0.0",
+        "artifact": "customer_delivery_seed",
+        "account_mod_id": "taiyangniao-pro",
+        "apply": "sunbird_roster",
+        "description": "太阳鸟交付种子：花名册、统一考勤侧库、考勤模板"
+      },
+      "notes": "标准 main Enterprise 宿主；公共考勤由 attendance-industry 提供；转换、规则与模板在 sunbird-attendance-custom 独立 Mod，沿用 taiyangniao-pro 权益与进度身份；不生成客户专用宿主"
+    },
+    {
+      "delivery_id": "customer-qishimei",
+      "industry_id": "涂料",
+      "industry_mod_id": "coating-industry",
+      "legacy_mod_id": "sz-qsm-pro",
+      "customer_brand": "奇士美 PRO",
+      "customer_name": "奇士美",
+      "tracks": {
+        "modules": [],
+        "employees": []
+      },
+      "notes": "首家涂料客户定制；产品引导仅展示「涂料行业包」；tracks 为空时回退到定制 Mod manifest 的 menu / workflow_employees"
+    }
+  ]
+}
