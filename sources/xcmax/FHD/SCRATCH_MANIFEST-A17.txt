@@ -1,0 +1,15 @@
+# XCMAX FHD 杂项文件外置清单（2026-11-12，A17）
+# 文件数 11；合计 426331 字节
+# 格式: sha256  字节数  相对路径
+
+533895d9048881cb6c0ca13da3c49e20f173e5a0ca6c0a83a3a07922ee59b110        2553  integrations/vue/DbTokensSettingsCard.vue
+c4c1ad1961b49b5120197fc4686789f16349cc5618352c9c98dfdd83a3e6bd8b        5601  integrations/vue/GlobalReadTokenPrompt.vue
+e27b68dc723a6da706e60006248741870c87551f0160a75384e6dfd9691781b0        4826  integrations/vue/ProductsReadGate.vue
+664c91e52d3881349795961682bc6e1fe56f2fb96d9454de5814742b34e0b006        1549  integrations/vue/SNIPPET-mount-ProductsReadGate.txt
+049008f53e9bae8a9ef64a92e0e9bf65e38917d36ac078b7c528149f4b9ac5ec         966  integrations/vue/attachAxiosDbReadInterceptor.ts
+96801275c1b94fad796ff2806d932398da80a5913f14146b2ba2591e1fddc9bb        4103  integrations/vue/dbTokenHeaders.ts
+bf6b0788faca1a4654fa5deca860e8c29e12022a985ef5564c6146482769715c      268994  delivery/sunbird-seed/424/考勤-2026-3月份考勤统计表.xlsx
+dea31b59c1471642641c813e6a4445744e5066f7c8f65056f8d6324ff7e3dd95        1234  delivery/sunbird-seed/README.md
+38b8e8876adfbd052cec2e7dd0468f938a544b930d476c0b314ea65d38d59ffa        9307  delivery/sunbird-seed/config/sunbird-cost-basis.json
+83ee48ce7e8f62777d776bf7b3f8bf6f51c7a3259084e7601a69c3c18947fd07       16606  delivery/sunbird-seed/config/sunbird-roster.json
+a3e4622615abf3dfc0c20505ff31bcac7225c37591a9f89eb160acadf4e30c8e      110592  delivery/sunbird-seed/data/mod_dbs/taiyangniao_pro.db
