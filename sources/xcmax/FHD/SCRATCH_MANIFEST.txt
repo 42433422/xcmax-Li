@@ -1,0 +1,15 @@
+# XCMAX FHD 杂项文件外置清单（2026-11-12）
+# 文件数 11；合计 2763212 字节
+# 格式: sha256  字节数  相对路径
+
+b950e39f01af1d04ea623c8f6d8eb9b6ea5c477c637295fabf20631c85116bfb     1318877  misc/VBCABLE_Driver_Pack45.zip
+a045bc804bcd338567ec718e0f78fa627ea192b48f301adcbfbcb6aab4247410       11818  misc/blank_grid_viewer.html
+f3e24cfece04300e34a4ba3b8bb9cee9080d760a1303ce661e6395e07a9a9704       10499  misc/grid_analyzer_fixed.html
+a059b876079d0272c47ea02f8c59b6811311bd27815c5b78e74ac3e589f337aa       11878  misc/longxiang_content.txt
+ad889a8aac404e07ae05a22c4719d40337016f00a3caa321b28af489d6aeab28       52553  misc/oxxf5tzl74p48secr1eq.png
+3b4b365e3d6118b6d99b0cabbbeb37cc80d0bbd70cd621253d801d05452355c5        8439  misc/real_label_with_cells.html
+8d8334a55a293a048ad744b103833b99b739b3a359ec4129ea06ed8e9933dcca       16997  misc/下载.png
+2d01ebbd337d35832c4da56c3c92ffa0c30fa624ef74ce606de8f6d38f651a02        4074  misc/前端结构分析.html
+b950e39f01af1d04ea623c8f6d8eb9b6ea5c477c637295fabf20631c85116bfb     1318877  static/VBCABLE_Driver_Pack45.zip
+b72823023309db763bff858178e861fb5b3877c29e7a22b9d0bc18697c59f60d         645  codex_super_employee/messages.jsonl
+695af877646d5a8b489c43b48ff9ade209dde741d66bd48457a92bc8168325e5        8555  cursor_super_employee/messages.jsonl
